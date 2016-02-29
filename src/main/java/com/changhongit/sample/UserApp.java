@@ -23,9 +23,11 @@ public class UserApp {
 	public static void main(String[] args) throws Exception {
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(
 				"classpath:/application-context.xml", args);
-//		AbstractApplicationContext context = new ClassPathXmlApplicationContext(
-//				"application-context.xml", UserApp.class);
+
 		log.info("HBase Application Running");
-	
+		
+		UserUtils userUtils = configurableApplicationContext.getBean(UserUtils.class);
+		userUtils.initialize();
+		userUtils.addUsers();
 	}
 }
